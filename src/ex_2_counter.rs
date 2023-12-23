@@ -16,7 +16,10 @@ impl<T: Eq + Hash> Counter<T> {
 
     /// Count an occurrence of the given value.
     fn count(&mut self, value: T) {
-        *self.values.entry(value).or_insert(0) += 1;
+        // *self.values.entry(value).or_insert(0) += 1;
+      self.values.entry(value)
+        .and_modify(|count| *count += 1)
+        .or_insert(1);
     }
 
     /// Return the number of times the given value has been seen.
