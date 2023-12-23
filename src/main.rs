@@ -1,7 +1,8 @@
 #![allow(unused_variables)]
 #![allow(dead_code)]
 
-mod ex_1_luhn;
+// mod ex_1_luhn;
+mod ex_2_counter;
 
 /* if let */
 fn if_let_example() {
@@ -39,8 +40,7 @@ fn main() {
     // if_let_example();
     // while_let_example();
     // pattern_matching_example();   
+    // let is_valid = ex_1_luhn::luhn("4263 9826 4026 9299");
 
-    let is_valid = ex_1_luhn::luhn("4263 9826 4026 9299");
-
-    println!("result: {is_valid}")
+    ex_2_counter::counter();
 }
