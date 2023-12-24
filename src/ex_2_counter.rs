@@ -1,12 +1,21 @@
 use std::collections::HashMap;
+use std::fmt::Debug;
 use std::hash::Hash;
 
 /// Counter counts the number of times each value of type T has been seen.
+#[derive(Debug)]
 struct Counter<T> {
     values: HashMap<T, u64>,
 }
 
-impl<T: Eq + Hash> Counter<T> {
+impl<T: Debug> PartialEq for Counter<T> {
+  fn eq(&self, other: &Self) -> bool {
+      // TODO: implement eq
+      false
+  }
+}
+
+impl<T: Debug  + Eq + PartialEq + Hash> Counter<T> {
     /// Create a new Counter.
     fn new() -> Self {
         Counter {
@@ -46,4 +55,17 @@ pub fn counter() {
     strctr.count("orange");
     strctr.count("apple");
     println!("got {} apples", strctr.times_seen("apple"));
+
+
+    let mut strctr2: Counter<&str> = Counter::new();
+    strctr2.count("car");
+    strctr2.count("car");
+    strctr2.count("bicycle");
+    strctr2.count("house");
+    strctr2.count("house");
+    strctr2.count("house");
+      
+
+
+    println!("Are values equal? {:?}", strctr2 == strctr)
 }
